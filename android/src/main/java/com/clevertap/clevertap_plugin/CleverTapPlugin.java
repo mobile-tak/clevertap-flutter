@@ -928,13 +928,14 @@ public class CleverTapPlugin implements ActivityAware,
      */
     private void renderNotification(MethodCall call, Result result) {
         String extras = call.argument("extras");
+        boolean useCustomLayout = call.argument("useCustomLayout");
         if (isCleverTapNotNull(cleverTapAPI)) {
             boolean isSuccess;
             try {
                 Log.d(TAG, "renderNotification Android");
                 Bundle messageBundle = Utils.stringToBundle(extras);
                 isSuccess = PushNotificationHandler.getPushNotificationHandler()
-                        .onMessageReceived(context, messageBundle, PushType.FCM.toString());
+                        .onMessageReceived(context, messageBundle, PushType.FCM.toString(), useCustomLayout);
                 if (isSuccess) {
                     result.success(null);
                 } else {
