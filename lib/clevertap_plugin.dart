@@ -411,11 +411,10 @@ class CleverTapPlugin {
   }
 
   /// Method to create Notification using CleverTap
-  static Future<void> createNotification(dynamic data,
-      {bool useCustomLayout = false}) async {
+  static Future<void> createNotification(dynamic data) async {
     print("inside createNotification Dart");
-    return await _dartToNativeMethodChannel.invokeMethod('createNotification',
-        {'extras': data, 'useCustomLayout': useCustomLayout});
+    return await _dartToNativeMethodChannel
+        .invokeMethod('createNotification', {'extras': data});
   }
 
   /// Method to process Notification using CleverTap to avoid duplicates using Push Amplification
